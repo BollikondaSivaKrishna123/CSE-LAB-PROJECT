@@ -11,7 +11,7 @@
 try 
 {
 	Class.forName("com.mysql.cj.jdbc.Driver");
-Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/lms1?serverTimezone=UTC", "root","");
 
 String Un=request.getParameter("uname");
 String pwd=request.getParameter("pwd");
