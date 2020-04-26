@@ -16,11 +16,11 @@ String com_quantity=request.getParameter("com_quantity");
 String com_company=request.getParameter("com_company");
 Float price=Float.parseFloat(request.getParameter("Price"));
 String bill_date=request.getParameter("Bill_Date");
-Integer status=Integer.parseInt(request.getParameter("status"));
+String status=request.getParameter("status");
 
 try{
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
+	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
 PreparedStatement ps=con.prepareStatement("update components set com_name=?,com_quantity=?,com_company=?,Price=?,BillDate=?,Status=? where com_id='"+ss+"'");
 // ps.setInt(1,id1);
 ps.setString(1,com_name);
@@ -34,7 +34,7 @@ ps.setFloat(4,price);
 
 ps.setString(5,bill_date);
 
-ps.setInt(6,status);
+ps.setString(6,status);
 int i = ps.executeUpdate();
 if(i > 0)
 {

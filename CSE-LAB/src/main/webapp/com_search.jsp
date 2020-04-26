@@ -69,11 +69,11 @@ a:active {
 try
 {
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
+	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
 String qr="select * from components where com_name like '%"+request.getParameter("search")+"%'";
 Statement st=con.createStatement();
 ResultSet rs=st.executeQuery(qr);
-while(rs.next())
+if(rs.next())
 {
 	%>
 	<TR>
@@ -84,12 +84,19 @@ while(rs.next())
 
 <TD><%=rs.getFloat("Price")%></TD>
 <TD><%=rs.getString("BillDate")%></TD>
-<TD><%=rs.getInt("Status")%></TD>
+<TD><%=rs.getString("Status")%></TD>
 	</TR>
 	
 	<%
 	
 }
+else
+{
+	%>
+	<center><p class="bg-primary text-black"><b><i><marquee>search Not found</marquee></i></b> </p></center>
+<%
+}
+
 }
 catch(Exception e)
 {

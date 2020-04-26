@@ -72,7 +72,11 @@
    </div>
    <div class = 'form-group'>
     <label for="status">STATUS</label>
-    <input type="text" class="form-control" id="status" name="status" placeholder="Enter Component Status">
+    <select class="form-control" id="status" name="status" >
+   <option>select</option>
+   <option>working</option>
+   <option>not-working</option>
+   </select>
    </div>
      <button type="submit" class="btn btn-success">Submit</button>
     <a class="btn btn-primary" href="com_view.jsp" role="button">view</a>

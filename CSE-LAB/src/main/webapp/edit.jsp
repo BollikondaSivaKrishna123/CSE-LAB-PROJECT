@@ -43,14 +43,14 @@
 </tr>
  -->
 <%
-String id=request.getParameter("id");
-int no=Integer.parseInt(id);
-int sumcount=0;
+String s1=request.getParameter("id");
+//int no=Integer.parseInt(id);
+//int sumcount=0;
 try {
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
+	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
 
-String query = "select * from cpu where cpu_id='"+no+"'";
+String query = "select * from cpu where cid='"+s1+"'";
 Statement st = con.createStatement();
 ResultSet rs = st.executeQuery(query);
 while(rs.next()){
@@ -59,12 +59,17 @@ while(rs.next()){
   
   <form class="" action="update.jsp" method="post">
     <DIV class = "form-group">
-    <label for = "cid">ID:</label>
-   <input type="text" class = "form-control" name="cid" disabled value="<%=rs.getInt(1)%>"> 
+    <label for = "cid">CPU-ID:</label>
+   <input type="text" class = "form-control" name="cid" disabled value="<%=rs.getString(1)%>"> 
    </DIV>  
+    <div class = 'form-group'>
+    <label for="location">LOCATION</label>
+    <input type="text" class="form-control " id="location" name="location" value="<%=rs.getString(2)%>" >
+   </div>
+  
   <div class="form-group">
   <label for="ram">RAM:</label>
-  <input type="text" class="form-control" id="ram" name="ram" value="<%=rs.getInt(2)%>">
+  <input type="text" class="form-control" id="ram" name="ram" value="<%=rs.getString(3)%>">
 	
 </div>
   
@@ -79,31 +84,27 @@ while(rs.next()){
       
    
    
-   
-   
-      <div class ="form-group">
-    <label for="mac">MAC</label>
-    <input type="text" class="form-control" id="mac" name="mac" value="<%=rs.getString(3)%>">
-   </div>
    <div class = 'form-group'>
     <label for="os">OS</label>
     <input type="text" class="form-control" id="os" name="os" value="<%=rs.getString(4)%>">
    </div>
-   <div class = 'form-group'>
-    <label for="company">COMPANY</label>
-    <input type="text" class="form-control" id="company" name="company" value="<%=rs.getString(5)%>" >
+    <div class = 'form-group'>
+    <label for="harddisk">HARDDISK</label>
+    <input type="text" class="form-control" id="harddisk" name="hard_disc" value="<%=rs.getString(5)%>">
+   </div>
+  
+   
+      <div class ="form-group">
+    <label for="mac">MAC</label>
+    <input type="text" class="form-control" id="mac" name="mac" value="<%=rs.getString(6)%>">
    </div>
    <div class = 'form-group'>
-    <label for="harddisk">HARDDISK</label>
-    <input type="text" class="form-control" id="harddisk" name="hard_disc" value="<%=rs.getString(6)%>">
+    <label for="company">COMPANY</label>
+    <input type="text" class="form-control" id="company" name="company" value="<%=rs.getString(7)%>" >
    </div>
    <div class = 'form-group'>
     <label for="price">PRICE</label>
-    <input type="text" class="form-control" id="price" name="price" value="<%=rs.getInt(7)%>">
-   </div>
-   <div class = 'form-group'>
-    <label for="location">LOCATION</label>
-    <input type="text" class="form-control " id="location" name="location" value="<%=rs.getString(8)%>" >
+    <input type="text" class="form-control" id="price" name="price" value="<%=rs.getFloat(8)%>">
    </div>
   
    
@@ -115,10 +116,14 @@ while(rs.next()){
   
    <div class = 'form-group'>
     <label for="status">STATUS</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="status" name="status" value="<%=rs.getInt(10)%>">
-   </div>
-   <div>
-   <input type="hidden" name="id" value="<%=rs.getInt(1)%>">
+<!--     <input type="text" class="form-control mb-2 mr-sm-2" id="status" name="status" placeholder="Enter Status(0(not-working)/1(working))"> -->
+  
+  <select class="form-control" id="status" name="status" value="<%=rs.getString(10)%>">
+	<option>working</option>
+    <option>not-working</option>
+    </select>
+   </div>   
+   <input type="hidden" name="id" value="<%=rs.getString(1)%>">
    </div>
     <button type="submit" class="btn btn-success">UPDATE</button>
     <a class="btn btn-primary" href="select.jsp" role="button">view</a>

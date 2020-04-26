@@ -9,46 +9,46 @@
     {
    
 
-Integer id1=Integer.parseInt(request.getParameter("id"));
-Integer ram=Integer.parseInt(request.getParameter("ram"));
+String ss1=request.getParameter("id");
+String ram=request.getParameter("ram");
 
 String mac=request.getParameter("mac");
 String os=request.getParameter("os");
 String company=request.getParameter("company");
 String hard_disc=request.getParameter("hard_disc");
-Integer price=Integer.parseInt(request.getParameter("price"));
+Float price=Float.parseFloat(request.getParameter("price"));
 String location=request.getParameter("location");
 String bill_date=request.getParameter("bill_date");
-Integer status=Integer.parseInt(request.getParameter("status"));
+String status=request.getParameter("status");
 
 try{
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
-PreparedStatement ps=con.prepareStatement("update cpu set ram=?,mac=?,os=?,company=?,hard_disc=?,price=?,location=?,bill_date=?,status=? where cpu_id="+id1);
-// ps.setInt(1,id1);
-ps.setInt(1, ram);
-ps.setString(2,mac);
+	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
+PreparedStatement ps=con.prepareStatement("update cpu set Location=?,RAM=?,OS=?,HardDisk=?,MAC=?,Company=?,Price=?,BillDate=?,Status=? where cid="+ss1);
+ps.setString(1, location);
+ps.setString(2,ram);
 
 ps.setString(3,os);
 
-ps.setString(4,company);
+ps.setString(4,hard_disc);
 
-ps.setString(5,hard_disc);
+ps.setString(5,mac);
 
-ps.setInt(6,price);
+ps.setString(6,company);
 
-ps.setString(7,location);
+ps.setFloat(7,price);
 ps.setString(8,bill_date);
 
-ps.setInt(9,status);
+ps.setString(9,status);
 int i = ps.executeUpdate();
 if(i > 0)
 {
 	%>
-	<jsp:include page="select.jsp" />
 	<br>
 	<center><p class="bg-primary text-white">Updated Successfully.....</p></center>
-<%
+	<br>
+	<jsp:include page="select.jsp" />
+	<%
 }
 else
 {

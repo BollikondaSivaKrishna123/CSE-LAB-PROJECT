@@ -49,7 +49,7 @@ String ss=request.getParameter("id");
 //int sumcount=0;
 try {
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
+	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
 
 String query = "select * from components where com_id='"+ss+"'";
 Statement st = con.createStatement();
@@ -92,7 +92,11 @@ while(rs.next()){
   
    <div class = 'form-group'>
     <label for="status">STATUS</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="status" name="status" value="<%=rs.getInt(7)%>">
+    <select class="form-control mb-2 mr-sm-2" id="status" name="status" value="<%=rs.getString(7)%>">
+   <option>select</option>
+   <option>working</option>
+   <option>not-working</option>
+   </select>
    </div>
    <div>
    <input type="hidden" name="id" value="<%=rs.getString(1)%>">

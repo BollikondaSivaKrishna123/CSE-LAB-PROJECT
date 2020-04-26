@@ -23,15 +23,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
-<script language="javascript">
-function editRecord(id)
-{
-    var f=document.form;
-    f.method="post";
-    f.action='edit.jsp?id='+id;
-    f.submit();  
-}
-</script>
 </head>
 
 <body>
@@ -40,7 +31,7 @@ function editRecord(id)
 try
 {
 Class.forName("com.mysql.cj.jdbc.Driver");
-Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
+Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
 PreparedStatement ps=con.prepareStatement("select * from cpu ");
 ResultSet rs=ps.executeQuery();
 
@@ -58,13 +49,13 @@ ResultSet rs=ps.executeQuery();
       <thead>
           <tr>
              <th style="width:15%">CPU_ID</th>
-             <th style="width:15%">RAM</th>
-             <th style="width:15%">MAC</th>
-             <th style="width:15%">OS</th>
-             <th style="width:15%">COMPANY</th>
-             <th style="width:15%">HARD_DISK</th>
-             <th style="width:15%">PRICE</th>
              <th style="width:15%">LOCATION</th>
+             <th style="width:15%">RAM</th>
+             <th style="width:15%">OS</th>
+             <th style="width:15%">HARD_DISK</th>
+             <th style="width:15%">MAC</th>
+             <th style="width:15%">COMPANY</th>
+             <th style="width:15%">PRICE</th>
              <th style="width:15%">BILL_DATE</th>
              <th style="width:15%">STATUS</th>
              <th style="width:15%">ACTION</th>
@@ -75,20 +66,26 @@ ResultSet rs=ps.executeQuery();
 while (rs.next()) {
 %>
 <TR>
-<TD><%=rs.getInt(1)%></TD>
-<TD><%=rs.getInt(2)%></TD>
+<TD><%=rs.getString(1)%></TD>
+<TD><%=rs.getString(2)%></TD>
 <TD><%=rs.getString(3)%></TD>
 <TD><%=rs.getString(4)%></TD>
 
 <TD><%=rs.getString(5)%></TD>
 <TD><%=rs.getString(6)%></TD>
-<TD><%=rs.getInt(7)%></TD>
-<TD><%=rs.getString(8)%></TD>
+<TD><%=rs.getString(7)%></TD>
+<TD><%=rs.getFloat(8)%></TD>
 <TD><%=rs.getString(9)%></TD>
-<TD><%=rs.getInt(10)%></TD>
-<td><input type="button" name="edit" value="Edit" style="background-color:green;font-weight:bold;color:white;" onclick="editRecord(<%=rs.getInt(1)%>);" ></td>
+<TD><%=rs.getString(10)%></TD>
+<td>
+
+<form action="edit.jsp?id=<%=rs.getString(1) %>" method="post">
+
+<input type="submit" name="edit" value="Edit" style="background-color:green;font-weight:bold;color:white;"  >
 
 
+</form>
+</td>
 </TR>
 <% 
 }

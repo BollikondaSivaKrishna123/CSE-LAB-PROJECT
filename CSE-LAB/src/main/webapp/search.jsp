@@ -57,14 +57,14 @@ a:active {
 <tr>
 
 <th style="width: 15%">CPU_ID</th>
-<th style="width: 15%">RAM</th>
-<th style="width: 15%">MAC</th>
-<th style="width: 15%">OS</th>
-<th style="width: 15%">COMPANY</th>
-<th style="width: 15%">HARD_DISC</th>
-<th style="width: 15%">PRICE</th>
 <th style="width: 15%">LOCATION</th>
-<th style="width: 15%">BILL_DATE</th>
+<th style="width: 15%">RAM</th>
+<th style="width: 15%">OS</th>
+<th style="width: 15%">HARDDISK</th>
+<th style="width: 15%">MAC</th>
+<th style="width: 15%">COMPANY</th>
+<th style="width: 15%">PRICE</th>
+<th style="width: 15%">BILLDATE</th>
 <th style="width: 15%">STATUS</th>
 
 </tr>
@@ -72,29 +72,35 @@ a:active {
 try
 {
 	Class.forName("com.mysql.cj.jdbc.Driver");
-	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
-String qr="select * from cpu where company like '%"+request.getParameter("search")+"%'";
+	Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
+String qr="select * from cpu where Company like '%"+request.getParameter("search")+"%'";
 Statement st=con.createStatement();
 ResultSet rs=st.executeQuery(qr);
-while(rs.next())
+if(rs.next())
 {
 	%>
 	<TR>
-<TD><%=rs.getInt("cpu_id")%></TD>
-<TD><%=rs.getInt("ram")%></TD>
-<TD><%=rs.getString("mac")%></TD>
-<TD><%=rs.getString("os")%></TD>
+<TD><%=rs.getString("cid")%></TD>
+<TD><%=rs.getString("Location")%></TD>
+<TD><%=rs.getString("RAM")%></TD>
+<TD><%=rs.getString("OS")%></TD>
 
-<TD><%=rs.getString("company")%></TD>
-<TD><%=rs.getString("hard_disc")%></TD>
-<TD><%=rs.getInt("price")%></TD>
-<TD><%=rs.getString("location")%></TD>
-<TD><%=rs.getString("bill_date")%></TD>
-<TD><%=rs.getInt("status")%></TD>
+<TD><%=rs.getString("HardDisk")%></TD>
+<TD><%=rs.getString("MAC")%></TD>
+<TD><%=rs.getString("Company")%></TD>
+<TD><%=rs.getFloat("Price")%></TD>
+<TD><%=rs.getString("BillDate")%></TD>
+<TD><%=rs.getString("Status")%></TD>
 	</TR>
 	
 	<%
 	
+}
+else
+{
+	%>
+	<center><p class="bg-primary text-black"><b><i>search Not found</i></b> </p></center>
+<%
 }
 }
 catch(Exception e)

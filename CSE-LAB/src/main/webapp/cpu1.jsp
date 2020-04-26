@@ -30,21 +30,25 @@
     <label for="cpuid">CPU-ID</label>
     <input type="text" class="form-control" id="cpuid" name="cpuid" placeholder="Enter CPU's ID">
   </div>
+  <div class = 'form-group'>
+    <label for="location">LOCATION</label>
+    <input type="text" class="form-control " id="location" name="location" placeholder="Enter the Location of the CPU" >
+   </div>
   
   <div class="form-group">
   <label for="ram">RAM:</label>
   <select class="form-control" id="ram" name="ram" placeholder="Enter RAM-SIZE">
 	<option>select</option>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-    <option>7</option>
-    <option>8</option>
-    <option>9</option>
-    <option>10</option>
+    <option>1 GB</option>
+    <option>2 GB</option>
+    <option>3 GB</option>
+    <option>4 GB</option>
+    <option>5 GB</option>
+    <option>6 GB</option>
+    <option>7 GB</option>
+    <option>8 GB</option>
+    <option>9 GB</option>
+    <option>10 GB</option>
   </select>
 </div>
   
@@ -59,44 +63,50 @@
       
    
    
+   <div class = 'form-group'>
+    <label for="os">OS</label>
+    <input type="text" class="form-control" id="os" name="os" placeholder="Enter the OS Type">
+   </div>
    
+   <div class = 'form-group'>
+    <label for="harddisk">HARDDISK</label>
+    <input type="text" class="form-control" id="harddisk" name="harddisk" placeholder="Enter HardDisk Type">
+   </div>
    
       <div class ="form-group">
     <label for="mac">MAC</label>
     <input type="text" class="form-control" id="mac" name="mac" placeholder="Enter MAC-id">
    </div>
    <div class = 'form-group'>
-    <label for="os">OS</label>
-    <input type="text" class="form-control" id="os" name="os" placeholder="Enter the OS Type">
-   </div>
-   <div class = 'form-group'>
     <label for="company">COMPANY</label>
     <input type="text" class="form-control" id="company" name="company" placeholder="Enter the Company Name" >
-   </div>
-   <div class = 'form-group'>
-    <label for="harddisk">HARDDISK</label>
-    <input type="text" class="form-control" id="harddisk" name="harddisk" placeholder="Enter HardDisk Type">
    </div>
    <div class = 'form-group'>
     <label for="price">PRICE</label>
     <input type="text" class="form-control" id="price" name="price" placeholder="Enter Price of CPU (Rs) ">
    </div>
-   <div class = 'form-group'>
-    <label for="location">LOCATION</label>
-    <input type="text" class="form-control " id="location" name="location" placeholder="Enter the Location of the CPU" >
-   </div>
-  
+   
    
    <div class = 'form-group'>
     <label for="billdate" >BILLDATE</label>
     
-    <input type="date" class="form-control" data-date-inline-picker="true" id="billdate" name="billdate" value="Enter the BillDate" >
+    <input type="date" class="form-control" data-date-inline-picker="true" id="billdate" name="billdate" palceholder="Enter the BillDate" >
    </div>
   
    <div class = 'form-group'>
     <label for="status">STATUS</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="status" name="status" placeholder="Enter Status(0(not-working)/1(working))">
+<!--     <input type="text" class="form-control mb-2 mr-sm-2" id="status" name="status" placeholder="Enter Status(0(not-working)/1(working))"> -->
+  
+  <select class="form-control" id="status" name="status" placeholder="Enter Status">
+	<option>select</option>
+    <option>working</option>
+    <option>not-working</option>
+    </select>
    </div>   
+   
+   
+   
+   
     <button type="submit" class="btn btn-success">Submit</button>
     <a class="btn btn-primary" href="select.jsp" role="button">view</a>
     <a class="btn btn-info" href="search.jsp" role="button">Search</a>

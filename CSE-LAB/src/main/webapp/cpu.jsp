@@ -29,29 +29,30 @@
 try
 {
 Class.forName("com.mysql.cj.jdbc.Driver");
-Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
+Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
 
-Integer cpu_id=Integer.parseInt(request.getParameter("cpuid"));
-Integer ram=Integer.parseInt(request.getParameter("ram"));
+String cpu_id=request.getParameter("cpuid");
+String ram=request.getParameter("ram");
 String mac=request.getParameter("mac");
 String os=request.getParameter("os");
 String company=request.getParameter("company");
 String hd=request.getParameter("harddisk");
-Integer pr=Integer.parseInt(request.getParameter("price"));
+Float pr=Float.parseFloat(request.getParameter("price"));
 String loc=request.getParameter("location");
 String bd=request.getParameter("billdate");
-Integer st=Integer.parseInt(request.getParameter("status"));
+String st=request.getParameter("status");
 PreparedStatement ps=con.prepareStatement("insert into cpu values(?,?,?,?,?,?,?,?,?,?) ");
-ps.setInt(1,cpu_id);
-ps.setInt(2,ram);
-ps.setString(3,mac);
+ps.setString(1,cpu_id);
+ps.setString(2,loc);
+ps.setString(3,ram);
 ps.setString(4,os);
-ps.setString(5,company);
-ps.setString(6,hd);
-ps.setInt(7,pr);
-ps.setString(8,loc);
+ps.setString(5,hd);
+ps.setString(6,mac);
+
+ps.setString(7,company);
+ps.setFloat(8,pr);
 ps.setString(9,bd);
-ps.setInt(10,st);
+ps.setString(10,st);
 int k=ps.executeUpdate();
 if(k>0)
 {

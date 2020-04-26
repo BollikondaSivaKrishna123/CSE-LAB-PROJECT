@@ -39,7 +39,7 @@
 try
 {
 Class.forName("com.mysql.cj.jdbc.Driver");
-Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
+Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
 PreparedStatement ps=con.prepareStatement("select * from components ");
 ResultSet rs=ps.executeQuery();
 
@@ -79,7 +79,7 @@ while (rs.next()) {
 <TD><%=rs.getString(4)%></TD>
 <TD><%=rs.getFloat(5)%></TD>
 <TD><%=rs.getString(6)%></TD>
-<TD><%=rs.getInt(7)%></TD>
+<TD><%=rs.getString(7)%></TD>
 <td>
 <form action="com_edit.jsp?id=<%=rs.getString(1) %>" method="post">
 <input type="submit" name="edit" value="Edit" style="background-color:red;font-weight:bold;color:white;" >

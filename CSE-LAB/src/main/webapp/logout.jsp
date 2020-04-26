@@ -12,8 +12,11 @@
 
 <% 
 session.invalidate();
+
 response.sendRedirect("Login.html");  %>
-<form action="Login.html"><p>you have logged out successfully</p></form>
+	
+<form action="Login.html"><center><p class="bg-primary text-white">Logout Successfully....Done.</p></center>
+</form>
 
 
 

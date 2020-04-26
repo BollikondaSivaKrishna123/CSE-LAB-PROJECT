@@ -11,33 +11,33 @@
 try 
 {
 	Class.forName("com.mysql.cj.jdbc.Driver");
-Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cse?serverTimezone=UTC", "root","");
+Connection con=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/lms1?serverTimezone=UTC", "root","");
 
 String Un=request.getParameter("uname");
 String pwd=request.getParameter("pwd");
-PreparedStatement ps=con.prepareStatement("select * from login where uname=? and passwd=? ");
+PreparedStatement ps=con.prepareStatement("select * from employee where UserName=? and Password=? ");
 ps.setString(1,Un);
 ps.setString(2,pwd);
 ResultSet rs=ps.executeQuery();
 // if(Un=="uname" && pwd=="passwd")   
 	if(rs.next())
 {
-		String uname1=rs.getString(1);
+		String uname1=rs.getString("UserName");
 			response.sendRedirect("Home.jsp");
 	session.setAttribute("uname2", uname1);
     //out.println("Valid login credentials"); 
 }
 else
 	{
-	//out.print("invalid Details");
-	//response.sendRedirect("Login.html");
 	
 	%>
-	<jsp:include page="Login.html" />
 	<div class="alert alert-warning" width="50">
-  <strong><center>Login failed!</center>
+  <strong><center><marquee><b><i><h3>Login failed!</h3></i></b></marquee></center>
   </strong> 
   </div>
+  
+	<jsp:include page="Login.html" />
+	
 	<%	
 	}
 
